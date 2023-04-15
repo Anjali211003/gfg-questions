@@ -1,0 +1,59 @@
+class Solution 
+{
+    public:
+    int findPages(int A[], int N, int M) 
+    {
+        int start=max(A,N);
+        int end=sum(A,N);
+        int res=-1;
+        if(N<M)
+        return res;
+        while(start<=end)
+        {
+            int mid=start+(end-start)/2;
+            if(isvalid(A,N,M,mid)==true)
+            {
+                res=mid;
+                end=mid-1;
+            }
+            else
+            start=mid+1;
+        }
+        return res;
+    }
+    bool isvalid(int nums[],int n,int k,int maxi)
+    {
+        int student=1;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+nums[i];
+            if(sum>maxi)
+            {
+                student+=1;
+                sum=nums[i];
+            }
+            if(student>k)
+            return false;
+        }
+        return true;
+    }
+    int max(int nums[],int n)
+    {  int m=0;
+        for(int i=0;i<n;i++)
+    {
+        if(m<nums[i])
+        m=nums[i];
+       
+    }
+        return m;
+    }
+    int sum(int nums[],int n)
+    {
+        int s=0;
+        for(int i=0;i<n;i++)
+        {
+            s=s+nums[i];
+        }
+        return s;
+    }
