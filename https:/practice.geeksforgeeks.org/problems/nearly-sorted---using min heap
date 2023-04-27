@@ -1,0 +1,64 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    //Function to return the sorted array.
+    vector <int> nearlySorted(int arr[], int num, int K){
+         vector<int>v;
+         int size;
+       if(num==K)
+       size=K;
+       else
+       size=K+1;
+        priority_queue<int,vector<int>,greater<int>> minh(arr,arr+size);
+        
+    
+        for(int i=K+1;i<num;i++)
+        {  
+            v.push_back(minh.top());
+            minh.pop();
+            minh.push(arr[i]);
+        }
+        while(minh.empty()==false)
+        {
+            v.push_back(minh.top());
+           minh.pop();
+        }
+      
+        return v;
+    }
+};
+
+//{ Driver Code Starts.
+
+int main()
+ {
+	int T;
+	cin>> T;
+	
+	while (T--)
+	{
+	    int num, K;
+	    cin>>num>>K;
+	    
+	    int arr[num];
+	    for(int i = 0; i<num; ++i){
+	        cin>>arr[i];
+	    }
+	    Solution ob;
+	    vector <int> res = ob.nearlySorted(arr, num, K);
+	    for (int i = 0; i < res.size (); i++)
+	        cout << res[i] << " ";
+	        
+	    cout<<endl;
+	}
+	
+	return 0;
+}
+
+// } Driver Code Ends
