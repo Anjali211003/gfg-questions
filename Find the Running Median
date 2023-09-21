@@ -1,0 +1,31 @@
+def Push_heap(n,min_h,max_h):
+    if(not max_h or n<(-max_h[0])):
+        heapq.heappush(max_h,-n)
+    else:
+        heapq.heappush(min_h,n)
+def balance(min_h,max_h):
+    if((len(min_h)-len(max_h))>=2):
+        heapq.heappush(max_h,-heapq.heappop(min_h))
+    if(len(max_h)-len(min_h)>=2):
+        heapq.heappush(min_h,-heapq.heappop(max_h))
+        
+def getmedian(min_h,max_h):
+    if(len(min_h)==len(max_h)):
+        return float((min_h[0]-max_h[0])/2)
+    elif(len(min_h)>len(max_h)):
+        return float(min_h[0])
+    else:
+        return float(-max_h[0])
+          
+        
+def runningMedian(a):
+    median=[]
+    min_h=[]
+    max_h=[]
+    for num in a:
+        Push_heap(num,min_h,max_h)
+        balance(min_h,max_h)
+        median.append(getmedian(min_h,max_h))
+        
+    return median
+    
