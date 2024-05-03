@@ -1,0 +1,24 @@
+class Solution
+{
+    public:
+  void  solve(struct Node *root, int k,int i,vector<int>&ans){
+         if(!root)
+     return ;
+     
+     if(i==k)
+     ans.push_back(root->data);
+     
+      solve(root->left,k,i+1,ans);
+        solve(root->right,k,i+1,ans);
+        return ;
+    }
+    // function should print the nodes at k distance from root
+    vector<int> Kdistance(struct Node *root, int k)
+    {
+     
+     vector<int>v;
+    solve(root,k,0,v);
+    return v;
+        
+    }
+};
