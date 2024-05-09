@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+int minimumOperations(vector < int > &arr, int n, int x) 
+{
+	int sum=0;
+	int totalsum=0;
+	for(int i=0;i<n;i++){
+		totalsum+=arr[i];
+	}
+     int i=0,j=0,ans=0;
+	 if (totalsum == x) {
+            return n;
+        }
+ 
+   totalsum=totalsum-x;
+	while(j<n){
+		sum+=arr[j];
+		 while (i < j && sum > totalsum) {
+                sum -= arr[i];
+                i++;
+            }
+		if(sum==totalsum)
+		ans=max(ans,j-i+1);
+         
+		 j++;
+
+	}
+	if(ans!=0)
+	return n-ans;
+	else
+	return -1;
+}
