@@ -1,0 +1,32 @@
+class Solution{
+public:
+    // m is maximum of number zeroes allowed to flip
+    // n is size of array
+    int findZeroes(int arr[], int n, int m) {
+       int i,j;
+        i=0,j=0;
+        int ans=0;
+        int countzero=0;
+        while(j<n)
+        {
+              if(arr[j]==0)
+               countzero++;
+
+             if(countzero<=m)
+             {  
+                ans=max(ans,j-i+1);
+               
+             }
+             while(countzero>m){
+                if(arr[i]==0)
+                countzero--;
+
+                i++;
+              }
+              j++;
+              
+        }
+        return ans;
+    }
+    
+};
